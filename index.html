@@ -9,28 +9,51 @@
 
   <style>
     /* ===== STILE GENERALE PAGINA ===== */
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      overflow: hidden; /* niente scroll orizzontale/zoom strano */
+      position: relative;
+    }
+
+    /* Sfondo foto sfocata */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url("img/sfondo.PNG") center center / cover no-repeat;
+      filter: blur(10px);
+      transform: scale(1.05); /* evita bordi vuoti dopo il blur */
+      z-index: -1;
+    }
+
+    /* Wrapper per centratura perfetta */
+    .page {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, #0b1120, #1e293b);
-      color: #e5e7eb;
+      padding: 24px 16px;
+      box-sizing: border-box;
     }
 
     .card {
       max-width: 480px;
       width: 100%;
+      margin: 0 auto;
       padding: 24px 20px 28px;
       box-sizing: border-box;
       text-align: center;
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.92);
       border-radius: 18px;
       box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
 
     h1 {
@@ -49,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
       margin: 0.35rem 0;
       padding: 0.85rem 1rem;
@@ -65,8 +88,10 @@
       display: inline-block;
     }
 
-    .btn .icon {
-      font-size: 1.1rem;
+    .btn img.logo {
+      height: 22px;
+      width: auto;
+      display: block;
     }
 
     /* Colori specifici per ogni app */
@@ -85,44 +110,48 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Due Passi in Paradiso</h1>
-    <p class="subtitle">Apri il percorso nella tua app preferita.</p>
+  <!-- Sfondo foto sfocata -->
+  <div class="bg"></div>
 
-    <!-- WIKILOC -->
-    <a class="btn wikiloc" href="https://loc.wiki/t/243279196?h=gpg7w6g6lp&wa=so&la=it (2 Passi in Paradiso   (v1)" target="_blank" rel="noopener">
-      <span class="icon">🟢</span>
-      <span class="label">Apri in Wikiloc</span>
-    </a>
+  <div class="page">
+    <div class="card">
+      <h1>Due Passi in Paradiso</h1>
+      <p class="subtitle">Apri il percorso nella tua app preferita.</p>
 
-    <!-- KOMOOT -->
-    <a class="btn komoot" href="https://www.komoot.com/it-IT/tour/2712412082?ref=itd&share_token=aN7LhZNtPcZ8OQvTusVuZf0agaGjcUqTb3iOf64wgYvYfvfYBl&ref=its" target="_blank" rel="noopener">
-      <span class="icon">🧭</span>
-      <span class="label">Apri in Komoot</span>
-    </a>
+      <!-- WIKILOC -->
+      <a class="btn wikiloc" href="https://loc.wiki/t/243279196?h=gpg7w6g6lp&wa=so&la=it (2 Passi in Paradiso   (v1)" target="_blank" rel="noopener">
+        <img class="logo" src="img/wikiloc.PNG" alt="Wikiloc" />
+        <span class="label">Apri in Wikiloc</span>
+      </a>
 
-    <!-- OUTDOORACTIVE (spostato in terza posizione) -->
-    <a class="btn outdoor" href="https://www.outdooractive.com/it/r/331372831?share=%7E33nt3y4k%244osswrsc&utm_source=unknown&utm_medium=social&utm_campaign=user-shared-social-content" target="_blank" rel="noopener">
-      <span class="icon">🚶‍♂️</span>
-      <span class="label">Apri in Outdooractive</span>
-    </a>
+      <!-- KOMOOT -->
+      <a class="btn komoot" href="https://www.komoot.com/it-IT/tour/2712412082?ref=itd&share_token=aN7LhZNtPcZ8OQvTusVuZf0agaGjcUqTb3iOf64wgYvYfvfYBl&ref=its" target="_blank" rel="noopener">
+        <img class="logo" src="img/komoot.jpg" alt="Komoot" />
+        <span class="label">Apri in Komoot</span>
+      </a>
 
-    <!-- ALLTRAILS (spostato in quarta posizione) -->
-    <a class="btn alltrails" href="https://www.alltrails.com/IL_TUO_LINK" target="_blank" rel="noopener">
-      <span class="icon">⛰️</span>
-      <span class="label">Apri in AllTrails</span>
-    </a>
+      <!-- OUTDOORACTIVE (terzo) -->
+      <a class="btn outdoor" href="https://www.outdooractive.com/it/r/331372831?share=%7E33nt3y4k%244osswrsc&utm_source=unknown&utm_medium=social&utm_campaign=user-shared-social-content" target="_blank" rel="noopener">
+        <img class="logo" src="img/outdooractive.PNG" alt="Outdooractive" />
+        <span class="label">Apri in Outdooractive</span>
+      </a>
 
-    <!-- PDF -->
-    <a class="btn pdf" href="percorso.pdf" target="_blank" rel="noopener">
-      <span class="icon">📄</span>
-      <span class="label">Scheda PDF del percorso</span>
-    </a>
+      <!-- ALLTRAILS (quarto) -->
+      <a class="btn alltrails" href="https://www.alltrails.com/IL_TUO_LINK" target="_blank" rel="noopener">
+        <img class="logo" src="img/alltrails.jpg" alt="AllTrails" />
+        <span class="label">Apri in AllTrails</span>
+      </a>
 
-    <p class="note">
-      I link aprono lo stesso itinerario su app diverse.<br>
-      Salva il percorso nell’app per usarlo offline.
-    </p>
+      <!-- PDF -->
+      <a class="btn pdf" href="percorso.pdf" target="_blank" rel="noopener">
+        <span class="label">Scheda PDF del percorso</span>
+      </a>
+
+      <p class="note">
+        I link aprono lo stesso itinerario su app diverse.<br>
+        Salva il percorso nell’app per usarlo offline.
+      </p>
+    </div>
   </div>
 </body>
 </html>
