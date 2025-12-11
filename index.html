@@ -22,7 +22,7 @@
     position: relative;
   }
 
-  /* Sfondo foto sfocata, più “presente” */
+  /* Sfondo foto sfocata ben visibile */
   .bg {
     position: fixed;
     inset: 0;
@@ -38,50 +38,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 20px;
+    padding: 24px 16px;
     box-sizing: border-box;
   }
 
-  /* Card molto più compatta */
+  /* Card solo come contenitore, SENZA pannello */
   .card {
     width: 100%;
-    max-width: 320px;                   /* <--- stringi/allarga la card */
+    max-width: 320px;          /* larghezza complessiva contenuti */
     margin: 0 auto;
-    padding: 18px 18px 22px;
-    background: rgba(15, 23, 42, 0.72); /* più trasparente */
-    border-radius: 24px;
+    padding: 8px 0 10px;
+    background: transparent;   /* niente riquadro blu */
+    box-shadow: none;
+    border-radius: 0;
     text-align: center;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
   }
 
+  /* Titolo e sottotitolo leggibili sullo sfondo */
   h1 {
     font-size: 1.35rem;
     margin: 0 0 0.25rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
 
   .subtitle {
     font-size: 0.9rem;
-    margin: 0 0 1.1rem;
-    color: #cbd5f5;
+    margin: 0 0 1rem;
+    color: #e5e7eb;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
 
   /* ===== PULSANTI ===== */
   .btn {
     display: flex;
     align-items: center;
-    justify-content: flex-start;        /* icona + testo allineati a sx */
+    justify-content: flex-start;
     gap: 10px;
     width: 100%;
-    max-width: 260px;                   /* <--- larghezza REALE del bottone */
-    margin: 0.3rem auto;                /* centrato dentro la card */
+    max-width: 260px;           /* <- larghezza reale bottone */
+    margin: 0.35rem auto;       /* centrati dentro la card */
     padding: 0.65rem 0.9rem;
     border-radius: 999px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
     border: none;
-    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
   }
 
   .btn img.logo {
@@ -103,11 +105,12 @@
   .alltrails { background: #0f766e; color: #ecfdf5; }
   .pdf       { background: #f97316; color: #3b0b00; }
 
-  /* Nota in fondo */
+  /* Nota in fondo, discreta */
   .note {
-    margin-top: 1rem;
-    font-size: 0.78rem;
-    color: #bcc4d6;
+    margin-top: 0.9rem;
+    font-size: 0.75rem;
+    color: #e5e7eb;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
 </style>
 </head>
