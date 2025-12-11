@@ -2,168 +2,247 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Due Passi in Paradiso – Percorso</title>
+  <title>Due Passi in Paradiso – Premium</title>
 
-  <!-- Disabilita zoom -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- Niente zoom -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <style>
-  /* ===== BASE ===== */
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+    /* ===== BASE ===== */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
 
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #020617;
-    color: #e5e7eb;
-    position: relative;
-  }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      position: relative;
+    }
 
-  /* Sfondo foto sfocata ben visibile */
-  .bg {
-    position: fixed;
-    inset: 0;
-    background: url("img/sfondo.PNG") center center / cover no-repeat;
-    filter: blur(5px);
-    transform: scale(1.05);
-    z-index: -1;
-  }
+    /* Sfondo blur + vignettatura */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url("img/sfondo.PNG") center center / cover no-repeat;
+      filter: blur(7px);
+      transform: scale(1.06);
+      z-index: -2;
+    }
 
-  /* Wrapper per centratura */
-  .page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    box-sizing: border-box;
-  }
+    .vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center,
+                                  rgba(0, 0, 0, 0.1) 0%,
+                                  rgba(0, 0, 0, 0.50) 100%);
+      z-index: -1;
+    }
 
-  /* Card solo come contenitore, SENZA pannello */
-  .card {
-    width: 100%;
-    max-width: 320px;          /* larghezza complessiva contenuti */
-    margin: 0 auto;
-    padding: 8px 0 10px;
-    background: transparent;   /* niente riquadro blu */
-    box-shadow: none;
-    border-radius: 0;
-    text-align: center;
-  }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      box-sizing: border-box;
+    }
 
-  /* Titolo e sottotitolo leggibili sullo sfondo */
-  h1 {
-    font-size: 1.35rem;
-    margin: 0 0 0.25rem;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
+    /* Card glassmorphism */
+    .card {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px 18px 22px;
+      border-radius: 26px;
+      background: linear-gradient(145deg,
+                  rgba(15, 23, 42, 0.90),
+                  rgba(15, 23, 42, 0.70));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(16px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-  .subtitle {
-    font-size: 0.9rem;
-    margin: 0 0 1rem;
-    color: #e5e7eb;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
+    /* Bordo luminoso */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.18), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
 
-  /* ===== PULSANTI ===== */
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    max-width: 260px;           /* <- larghezza reale bottone */
-    margin: 0.35rem auto;       /* centrati dentro la card */
-    padding: 0.65rem 0.9rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: none;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  }
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
 
-  .btn img.logo {
-    height: 22px;
-    width: auto;
-    display: block;
-  }
+    h1 {
+      font-size: 1.45rem;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.02em;
+    }
 
-  .btn span.label {
-    display: inline-block;
-    text-align: left;
-    flex: 1;
-  }
+    .subtitle {
+      font-size: 0.9rem;
+      margin: 0 0 1.1rem;
+      color: #cbd5f5;
+    }
 
-  /* Colori specifici per ogni app */
-  .wikiloc   { background: #19a974; color: #021b12; }
-  .komoot    { background: #5bcc43; color: #052e16; }
-  .outdoor   { background: #2563eb; color: #eff6ff; }
-  .alltrails { background: #0f766e; color: #ecfdf5; }
-  .pdf       { background: #f97316; color: #3b0b00; }
+    /* ===== PULSANTI ===== */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      width: 100%;
+      max-width: 280px;
+      margin: 0.35rem auto;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.97rem;
+      border: none;
+      box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition:
+        transform 0.12s ease-out,
+        box-shadow 0.12s ease-out,
+        filter 0.12s ease-out;
+    }
 
-  /* Nota in fondo, discreta */
-  .note {
-    margin-top: 0.9rem;
-    font-size: 0.75rem;
-    color: #e5e7eb;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
-</style>
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg,
+                      rgba(255, 255, 255, 0.3) 0%,
+                      rgba(255, 255, 255, 0.1) 25%,
+                      transparent 60%);
+      opacity: 0;
+      transition: opacity 0.15s ease-out;
+      pointer-events: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(15, 23, 42, 0.45);
+      filter: brightness(0.97);
+    }
+
+    .btn:active::after {
+      opacity: 1;
+    }
+
+    .btn img.logo {
+      height: 22px;
+      width: 22px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: rgba(15, 23, 42, 0.25);
+      flex-shrink: 0;
+    }
+
+    .btn span.label {
+      display: inline-block;
+      text-align: left;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Colori app */
+    .wikiloc   { background: #19a974; color: #021b12; }
+    .komoot    { background: #5bcc43; color: #052e16; }
+    .outdoor   { background: #2563eb; color: #eff6ff; }
+    .alltrails { background: #0f766e; color: #ecfdf5; }
+    .pdf       { background: #f97316; color: #3b0b00; }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    /* Piccola animazione di ingresso */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.45s ease-out forwards;
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0s; }
+    .fade-in:nth-child(2) { animation-delay: 0.05s; }
+    .fade-in:nth-child(3) { animation-delay: 0.10s; }
+    .fade-in:nth-child(4) { animation-delay: 0.15s; }
+    .fade-in:nth-child(5) { animation-delay: 0.20s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
   <div class="bg"></div>
+  <div class="vignette"></div>
 
   <div class="page">
     <div class="card">
-      <h1>Due Passi in Paradiso</h1>
-      <p class="subtitle">Apri il percorso nella tua app preferita.</p>
+      <div class="card-content">
+        <h1>Due Passi in Paradiso</h1>
+        <p class="subtitle">Apri il percorso nella tua app preferita.</p>
 
-      <!-- WIKILOC -->
-      <a class="btn wikiloc" href="https://loc.wiki/t/243279196?h=gpg7w6g6lp&wa=so&la=it (2 Passi in Paradiso   (v1)" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/wikiloc.PNG"
-             alt="Wikiloc" />
-        <span class="label">Apri in Wikiloc</span>
-      </a>
+        <!-- Sostituisci LINK_... con i tuoi link reali -->
+        <a class="btn wikiloc fade-in" href="LINK_WIKILOC" target="_blank" rel="noopener">
+          <img class="logo" src="img/wikiloc.PNG" alt="Wikiloc" />
+          <span class="label">Apri in Wikiloc</span>
+        </a>
 
-      <!-- KOMOOT -->
-      <a class="btn komoot" href="https://www.komoot.com/it-IT/tour/2712412082?ref=itd&share_token=aN7LhZNtPcZ8OQvTusVuZf0agaGjcUqTb3iOf64wgYvYfvfYBl&ref=its" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/komoot.jpg"
-             alt="Komoot" />
-        <span class="label">Apri in Komoot</span>
-      </a>
+        <a class="btn komoot fade-in" href="LINK_KOMOOT" target="_blank" rel="noopener">
+          <img class="logo" src="img/komoot.jpg" alt="Komoot" />
+          <span class="label">Apri in Komoot</span>
+        </a>
 
-      <!-- OUTDOORACTIVE -->
-      <a class="btn outdoor" href="https://www.outdooractive.com/it/r/331372831?share=%7E33nt3y4k%244osswrsc&utm_source=unknown&utm_medium=social&utm_campaign=user-shared-social-content" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/outdooractive.PNG"
-             alt="Outdooractive" />
-        <span class="label">Apri in Outdooractive</span>
-      </a>
+        <a class="btn outdoor fade-in" href="LINK_OUTDOORACTIVE" target="_blank" rel="noopener">
+          <img class="logo" src="img/outdooractive.PNG" alt="Outdooractive" />
+          <span class="label">Apri in Outdooractive</span>
+        </a>
 
-      <!-- ALLTRAILS -->
-      <a class="btn alltrails" href="https://www.alltrails.com/IL_TUO_LINK" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/alltrails.jpg"
-             alt="AllTrails" />
-        <span class="label">Apri in AllTrails</span>
-      </a>
+        <a class="btn alltrails fade-in" href="LINK_ALLTRAILS" target="_blank" rel="noopener">
+          <img class="logo" src="img/alltrails.jpg" alt="AllTrails" />
+          <span class="label">Apri in AllTrails</span>
+        </a>
 
-      <!-- PDF -->
-      <a class="btn pdf" href="percorso.pdf" target="_blank" rel="noopener">
-        <span class="label">Scheda PDF del percorso</span>
-      </a>
+        <a class="btn pdf fade-in" href="percorso.pdf" target="_blank" rel="noopener">
+          <span class="label">Scheda PDF del percorso</span>
+        </a>
 
-      <p class="note">
-        I link aprono lo stesso itinerario su app diverse.<br>
-        Salva il percorso nell’app per usarlo offline.
-      </p>
+        <p class="note fade-in">
+          I link aprono lo stesso itinerario su app diverse.<br>
+          Salva il percorso nell’app per usarlo offline.
+        </p>
+      </div>
     </div>
   </div>
 </body>
