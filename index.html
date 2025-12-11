@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <title>Due Passi in Paradiso – Percorso</title>
 
-  <!-- Disabilita zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <style>
-    /* ===== STILE GENERALE PAGINA ===== */
     html, body {
       margin: 0;
       padding: 0;
@@ -19,21 +17,19 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #020617;
       color: #e5e7eb;
-      overflow: hidden; /* niente scroll orizzontale/zoom strano */
+      overflow: hidden;
       position: relative;
     }
 
-    /* Sfondo foto sfocata */
     .bg {
       position: fixed;
       inset: 0;
       background: url("img/sfondo.PNG") center center / cover no-repeat;
       filter: blur(10px);
-      transform: scale(1.05); /* evita bordi vuoti dopo il blur */
+      transform: scale(1.05);
       z-index: -1;
     }
 
-    /* Wrapper per centratura perfetta */
     .page {
       min-height: 100vh;
       display: flex;
@@ -48,60 +44,39 @@
       width: 100%;
       margin: 0 auto;
       padding: 24px 20px 28px;
-      box-sizing: border-box;
-      text-align: center;
       background: rgba(15, 23, 42, 0.92);
       border-radius: 18px;
-      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
+      text-align: center;
       backdrop-filter: blur(12px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.45);
     }
 
-    h1 {
-      font-size: 1.5rem;
-      margin: 0 0 0.25rem;
-    }
+    h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+    .subtitle { font-size: 0.9rem; margin: 0 0 1.4rem; color: #9ca3af; }
 
-    .subtitle {
-      font-size: 0.9rem;
-      margin: 0 0 1.4rem;
-      color: #9ca3af;
-    }
-
-    /* ===== PULSANTI ===== */
     .btn {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      margin: 0.35rem 0;
       padding: 0.85rem 1rem;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      border: none;
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+      margin: 0.35rem 0;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.35);
     }
 
-    .btn span.label {
-      display: inline-block;
-    }
+    .btn img.logo { height: 22px; width: auto; }
 
-    .btn img.logo {
-      height: 22px;
-      width: auto;
-      display: block;
-    }
-
-    /* Colori specifici per ogni app */
-    .wikiloc   { background: #19a974; color: #021b12; }
-    .komoot    { background: #5bcc43; color: #052e16; }
-    .outdoor   { background: #2563eb; color: #eff6ff; }
+    .wikiloc { background: #19a974; color: #021b12; }
+    .komoot { background: #5bcc43; color: #052e16; }
+    .outdoor { background: #2563eb; color: #eff6ff; }
     .alltrails { background: #0f766e; color: #ecfdf5; }
-    .pdf       { background: #f97316; color: #3b0b00; }
+    .pdf { background: #f97316; color: #3b0b00; }
 
-    /* Nota in fondo */
     .note {
       margin-top: 1.2rem;
       font-size: 0.78rem;
@@ -109,8 +84,8 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- Sfondo foto sfocata -->
   <div class="bg"></div>
 
   <div class="page">
@@ -118,32 +93,27 @@
       <h1>Due Passi in Paradiso</h1>
       <p class="subtitle">Apri il percorso nella tua app preferita.</p>
 
-      <!-- WIKILOC -->
-      <a class="btn wikiloc" href="https://loc.wiki/t/243279196?h=gpg7w6g6lp&wa=so&la=it (2 Passi in Paradiso   (v1)" target="_blank" rel="noopener">
+      <a class="btn wikiloc" href="#" target="_blank">
         <img class="logo" src="img/wikiloc.PNG" alt="Wikiloc" />
         <span class="label">Apri in Wikiloc</span>
       </a>
 
-      <!-- KOMOOT -->
-      <a class="btn komoot" href="https://www.komoot.com/it-IT/tour/2712412082?ref=itd&share_token=aN7LhZNtPcZ8OQvTusVuZf0agaGjcUqTb3iOf64wgYvYfvfYBl&ref=its" target="_blank" rel="noopener">
+      <a class="btn komoot" href="#" target="_blank">
         <img class="logo" src="img/komoot.jpg" alt="Komoot" />
         <span class="label">Apri in Komoot</span>
       </a>
 
-      <!-- OUTDOORACTIVE (terzo) -->
-      <a class="btn outdoor" href="https://www.outdooractive.com/it/r/331372831?share=%7E33nt3y4k%244osswrsc&utm_source=unknown&utm_medium=social&utm_campaign=user-shared-social-content" target="_blank" rel="noopener">
+      <a class="btn outdoor" href="#" target="_blank">
         <img class="logo" src="img/outdooractive.PNG" alt="Outdooractive" />
         <span class="label">Apri in Outdooractive</span>
       </a>
 
-      <!-- ALLTRAILS (quarto) -->
-      <a class="btn alltrails" href="https://www.alltrails.com/IL_TUO_LINK" target="_blank" rel="noopener">
+      <a class="btn alltrails" href="#" target="_blank">
         <img class="logo" src="img/alltrails.jpg" alt="AllTrails" />
         <span class="label">Apri in AllTrails</span>
       </a>
 
-      <!-- PDF -->
-      <a class="btn pdf" href="percorso.pdf" target="_blank" rel="noopener">
+      <a class="btn pdf" href="percorso.pdf" target="_blank">
         <span class="label">Scheda PDF del percorso</span>
       </a>
 
