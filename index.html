@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <style>
-  /* ===== IMPOSTAZIONI BASE ===== */
+  /* ===== BASE ===== */
   html, body {
     margin: 0;
     padding: 0;
@@ -22,12 +22,12 @@
     position: relative;
   }
 
-  /* Sfondo foto sfocata, più visibile */
+  /* Sfondo foto sfocata, più “presente” */
   .bg {
     position: fixed;
     inset: 0;
     background: url("img/sfondo.PNG") center center / cover no-repeat;
-    filter: blur(6px);
+    filter: blur(5px);
     transform: scale(1.05);
     z-index: -1;
   }
@@ -38,31 +38,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 24px 20px;
     box-sizing: border-box;
   }
 
-  /* Riquadro centrale più compatto e meno “pannellone” */
+  /* Card molto più compatta */
   .card {
     width: 100%;
-    max-width: 360px;          /* <- riduci / aumenta se la vuoi più stretta/larga */
+    max-width: 320px;                   /* <--- stringi/allarga la card */
     margin: 0 auto;
-    padding: 18px 16px 22px;
-    background: rgba(15, 23, 42, 0.78);  /* più trasparente per vedere lo sfondo */
+    padding: 18px 18px 22px;
+    background: rgba(15, 23, 42, 0.72); /* più trasparente */
     border-radius: 24px;
     text-align: center;
     backdrop-filter: blur(14px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
   }
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     margin: 0 0 0.25rem;
   }
 
   .subtitle {
     font-size: 0.9rem;
-    margin: 0 0 1.3rem;
+    margin: 0 0 1.1rem;
     color: #cbd5f5;
   }
 
@@ -70,18 +70,18 @@
   .btn {
     display: flex;
     align-items: center;
-    justify-content: flex-start;   /* icona + testo allineati a sinistra */
+    justify-content: flex-start;        /* icona + testo allineati a sx */
     gap: 10px;
     width: 100%;
-    max-width: 320px;              /* <- larghezza reale del bottone */
-    margin: 0.3rem auto;           /* centrati orizzontalmente */
-    padding: 0.75rem 1rem;
+    max-width: 260px;                   /* <--- larghezza REALE del bottone */
+    margin: 0.3rem auto;                /* centrato dentro la card */
+    padding: 0.65rem 0.9rem;
     border-radius: 999px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border: none;
-    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35);
   }
 
   .btn img.logo {
@@ -105,9 +105,9 @@
 
   /* Nota in fondo */
   .note {
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     font-size: 0.78rem;
-    color: #9ca3af;
+    color: #bcc4d6;
   }
 </style>
 </head>
