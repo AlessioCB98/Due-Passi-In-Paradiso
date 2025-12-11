@@ -1,170 +1,148 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Due Passi in Paradiso – Percorso</title>
+  <meta charset="UTF-8" />
+  <title>Due Passi in Paradiso</title>
 
-  <!-- Disabilita zoom -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <style>
-  /* ===== BASE ===== */
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0a0f1c;
+      color: white;
+      overflow-x: hidden;
+    }
 
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #020617;
-    color: #e5e7eb;
-    position: relative;
-  }
+    /* Sfondo */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url("img/sfondo.PNG") center center / cover no-repeat;
+      filter: blur(6px);
+      transform: scale(1.05);
+      z-index: -1;
+      opacity: 0.85;
+    }
 
-  /* Sfondo foto sfocata ben visibile */
-  .bg {
-    position: fixed;
-    inset: 0;
-    background: url("img/sfondo.PNG") center center / cover no-repeat;
-    filter: blur(5px);
-    transform: scale(1.05);
-    z-index: -1;
-  }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
-  /* Wrapper per centratura */
-  .page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    box-sizing: border-box;
-  }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 25px;
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
 
-  /* Card solo come contenitore, SENZA pannello */
-  .card {
-    width: 100%;
-    max-width: 320px;          /* larghezza complessiva contenuti */
-    margin: 0 auto;
-    padding: 8px 0 10px;
-    background: transparent;   /* niente riquadro blu */
-    box-shadow: none;
-    border-radius: 0;
-    text-align: center;
-  }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
 
-  /* Titolo e sottotitolo leggibili sullo sfondo */
-  h1 {
-    font-size: 1.35rem;
-    margin: 0 0 0.25rem;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
+    .subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      opacity: 0.85;
+    }
 
-  .subtitle {
-    font-size: 0.9rem;
-    margin: 0 0 1rem;
-    color: #e5e7eb;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
+    /* Pulsanti */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      background: #1e40af;
+      color: white;
+      text-decoration: none;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 999px;
+      margin: 10px 0;
+      transition: transform 0.1s ease-out;
+    }
 
-  /* ===== PULSANTI ===== */
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    max-width: 260px;           /* <- larghezza reale bottone */
-    margin: 0.35rem auto;       /* centrati dentro la card */
-    padding: 0.65rem 0.9rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: none;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  }
+    .btn:active {
+      transform: scale(0.97);
+    }
 
-  .btn img.logo {
-    height: 22px;
-    width: auto;
-    display: block;
-  }
+    .btn img {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
 
-  .btn span.label {
-    display: inline-block;
-    text-align: left;
-    flex: 1;
-  }
+    /* Colori personalizzati */
+    .wikiloc { background: #16a34a; }
+    .komoot { background: #4ade80; color: #052e16; }
+    .outdoor { background: #2563eb; }
+    .alltrails { background: #0f766e; }
+    .pdf { background: #f97316; }
 
-  /* Colori specifici per ogni app */
-  .wikiloc   { background: #19a974; color: #021b12; }
-  .komoot    { background: #5bcc43; color: #052e16; }
-  .outdoor   { background: #2563eb; color: #eff6ff; }
-  .alltrails { background: #0f766e; color: #ecfdf5; }
-  .pdf       { background: #f97316; color: #3b0b00; }
-
-  /* Nota in fondo, discreta */
-  .note {
-    margin-top: 0.9rem;
-    font-size: 0.75rem;
-    color: #e5e7eb;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
-</style>
+    .note {
+      margin-top: 15px;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      opacity: 0.9;
+      line-height: 1.3;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="bg"></div>
+  <div class="bg"></div>
 
-  <div class="page">
-    <div class="card">
-      <h1>Due Passi in Paradiso</h1>
-      <p class="subtitle">Apri il percorso nella tua app preferita.</p>
+  <div class="page">
+    <div class="card">
 
-      <!-- WIKILOC -->
-      <a class="btn wikiloc" href="https://loc.wiki/t/243279196?h=gpg7w6g6lp&wa=so&la=it (2 Passi in Paradiso   (v1)" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/wikiloc.PNG"
-             alt="Wikiloc" />
-        <span class="label">Apri in Wikiloc</span>
-      </a>
+      <h1>Due Passi in Paradiso</h1>
+      <p class="subtitle">Apri il percorso nella tua app preferita.</p>
 
-      <!-- KOMOOT -->
-      <a class="btn komoot" href="https://www.komoot.com/it-IT/tour/2712412082?ref=itd&share_token=aN7LhZNtPcZ8OQvTusVuZf0agaGjcUqTb3iOf64wgYvYfvfYBl&ref=its" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/komoot.jpg"
-             alt="Komoot" />
-        <span class="label">Apri in Komoot</span>
-      </a>
+      <a class="btn wikiloc" href="LINK_WIKILOC" target="_blank">
+        <img src="img/wikiloc.PNG" alt="Wikiloc" />
+        Apri in Wikiloc
+      </a>
 
-      <!-- OUTDOORACTIVE -->
-      <a class="btn outdoor" href="https://www.outdooractive.com/it/r/331372831?share=%7E33nt3y4k%244osswrsc&utm_source=unknown&utm_medium=social&utm_campaign=user-shared-social-content" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/outdooractive.PNG"
-             alt="Outdooractive" />
-        <span class="label">Apri in Outdooractive</span>
-      </a>
+      <a class="btn komoot" href="LINK_KOMOOT" target="_blank">
+        <img src="img/komoot.jpg" alt="Komoot" />
+        Apri in Komoot
+      </a>
 
-      <!-- ALLTRAILS -->
-      <a class="btn alltrails" href="https://www.alltrails.com/IL_TUO_LINK" target="_blank" rel="noopener">
-        <img class="logo"
-             src="https://raw.githubusercontent.com/AlessioCB98/Due-Passi-In-Paradiso/main/img/alltrails.jpg"
-             alt="AllTrails" />
-        <span class="label">Apri in AllTrails</span>
-      </a>
+      <a class="btn outdoor" href="LINK_OUTDOORACTIVE" target="_blank">
+        <img src="img/outdooractive.PNG" alt="Outdooractive" />
+        Apri in Outdooractive
+      </a>
 
-      <!-- PDF -->
-      <a class="btn pdf" href="percorso.pdf" target="_blank" rel="noopener">
-        <span class="label">Scheda PDF del percorso</span>
-      </a>
+      <a class="btn alltrails" href="LINK_ALLTRAILS" target="_blank">
+        <img src="img/alltrails.jpg" alt="AllTrails" />
+        Apri in AllTrails
+      </a>
 
-      <p class="note">
-        I link aprono lo stesso itinerario su app diverse.<br>
-        Salva il percorso nell’app per usarlo offline.
-      </p>
-    </div>
-  </div>
+      <a class="btn pdf" href="percorso.pdf" target="_blank">
+        Scheda PDF del percorso
+      </a>
+
+      <p class="note">
+        I link aprono lo stesso itinerario su app diverse.<br>
+        Salva il percorso nell’app per usarlo offline.
+      </p>
+
+    </div>
+  </div>
+
 </body>
 </html>
